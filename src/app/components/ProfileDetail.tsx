@@ -27,13 +27,21 @@ function ProfileDetail({ pid }: { pid: string }) {
   const [profile, setProfile] = useState<Profile[]>([]);
   const [courses, setCourses] = useState<Course[]>([]);
   const router = useRouter();
-  const { setUserId, setIsLogged, isLogged } = useGlobalContext();
+  const { setUserId, setIsLogged, userId, isLogged } = useGlobalContext();
 
   function handleLogout() {
     setUserId(null);
     setIsLogged(false);
-    router.replace("/");
+    router.push("/");
   }
+
+  useEffect(() => {
+    if (!userId) {
+      router.push("/not-found");
+    } else if (!isLogged) {
+      router.push("/not-found");
+    }
+  }, []);
 
   useEffect(() => {
     async function fetchProfile() {

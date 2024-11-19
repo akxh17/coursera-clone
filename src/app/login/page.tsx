@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, FormEvent } from "react";
+import React, { useState, FormEvent, useEffect } from "react";
 import { IoLogInOutline } from "react-icons/io5";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -7,9 +7,15 @@ import { useGlobalContext } from "../context/GlobalContext";
 
 function loginPage() {
   const router = useRouter();
-  const { setUserId, setIsLogged } = useGlobalContext();
+  const { setUserId, setIsLogged, isLogged } = useGlobalContext();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    if (isLogged) {
+      router.push("/");
+    } 
+  }, []);
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
@@ -33,7 +39,7 @@ function loginPage() {
         const data = await response.json();
         setIsLogged(true);
         setUserId(data.user.id);
-        router.replace(`/profile/${data.user.id}`);
+        router.push(`/profile/${data.user.id}`);
       }
     } catch (error) {
       console.error("Error during login:", error);

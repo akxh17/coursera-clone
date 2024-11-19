@@ -16,9 +16,9 @@ let users: User[] = [];
 
 export async function PATCH(
   request: Request,
-  { params }: { params: { userId: string } }
+  context: { params: { userId: string } }
 ) {
-  const { userId } = await params;
+  const { userId } = context.params;
   const { courseId } = await request.json();
 
   if (fs.existsSync(userFilePath)) {

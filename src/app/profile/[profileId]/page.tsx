@@ -1,12 +1,8 @@
 import React from "react";
 import ProfileDetail from "@/app/components/ProfileDetail";
 
-async function ProfileDetailPage({
-  params,
-}: {
-  params: { profileId: string };
-}) {
-  const { profileId } = await params;
+async function ProfileDetailPage(context: { params: { profileId: string } }) {
+  const { profileId } = context.params;
   return (
     <div>
       <ProfileDetail pid={profileId} />

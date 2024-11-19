@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useGlobalContext } from "../context/GlobalContext";
 
-function loginPage() {
+function LoginPage() {
   const router = useRouter();
   const { setUserId, setIsLogged, isLogged } = useGlobalContext();
   const [email, setEmail] = useState("");
@@ -83,4 +83,4 @@ function loginPage() {
   );
 }
 
-export default loginPage;
+export default LoginPage;

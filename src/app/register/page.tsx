@@ -18,7 +18,7 @@ const userSchema = z
 
 type FormData = z.infer<typeof userSchema>;
 
-function registerPage() {
+function RegisterPage() {
   const router = useRouter();
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
@@ -150,4 +150,4 @@ function registerPage() {
   );
 }
 
-export default registerPage;
+export default RegisterPage;

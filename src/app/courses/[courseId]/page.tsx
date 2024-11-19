@@ -1,8 +1,8 @@
 import CourseDetail from "@/app/components/CourseDetail";
 import React from "react";
 
-async function CourseDetailPage(context: { params: { courseId: string } }) {
-  const { courseId } = context.params;
+async function CourseDetailPage({ params }: { params: Promise<{ courseId: string }> }) {
+  const courseId = (await params).courseId
   return <CourseDetail id={courseId} />;
 }
 

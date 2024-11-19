@@ -27,12 +27,12 @@ function ProfileDetail({ pid }: { pid: string }) {
   const [profile, setProfile] = useState<Profile[]>([]);
   const [courses, setCourses] = useState<Course[]>([]);
   const router = useRouter();
-  const { setUserId, setIsLogged } = useGlobalContext();
+  const { setUserId, setIsLogged, isLogged } = useGlobalContext();
 
   function handleLogout() {
     setUserId(null);
     setIsLogged(false);
-    router.push("/");
+    router.replace("/");
   }
 
   useEffect(() => {

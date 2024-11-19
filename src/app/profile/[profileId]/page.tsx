@@ -1,5 +1,5 @@
 import React from "react";
-import ProfileDetail from "../components/ProfileDetail";
+import ProfileDetail from "@/app/components/ProfileDetail";
 
 async function ProfileDetailPage({
   params,

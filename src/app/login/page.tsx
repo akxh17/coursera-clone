@@ -33,7 +33,7 @@ function loginPage() {
         const data = await response.json();
         setIsLogged(true);
         setUserId(data.user.id);
-        router.push(`/${data.user.id}`);
+        router.replace(`/profile/${data.user.id}`);
       }
     } catch (error) {
       console.error("Error during login:", error);

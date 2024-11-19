@@ -41,9 +41,9 @@ function Navbar() {
 
         {isLogged ? (
           <Link
-            href={`/${userId}`}
+            href={`/profile/${userId}`}
             className={
-              pathname === `/${userId}` ? "active--link" : "inactive--link"
+              pathname === `/profile/${userId}` ? "active--link" : "inactive--link"
             }
           >
             Profile

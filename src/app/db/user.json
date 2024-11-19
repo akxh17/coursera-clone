@@ -1,0 +1,19 @@
+[
+  {
+    "id": "3nCGJCYLavv0bvDApeIaO",
+    "fullName": "Akash Suresh",
+    "email": "akash@gmail.com",
+    "password": "akash123",
+    "enrolled": [
+      "1",
+      "2"
+    ]
+  },
+  {
+    "id": "cZLifxUZZM81f302LMMZ-",
+    "fullName": "Gokul Suresh",
+    "email": "gokul@gmail.com",
+    "password": "gokul123",
+    "enrolled": []
+  }
+]

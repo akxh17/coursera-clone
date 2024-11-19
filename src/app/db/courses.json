@@ -1,0 +1,63 @@
+[
+    {
+      "id": 1,
+      "img": "/images/course/cybersecurity.jpg",
+      "title": "Cybersecurity for Everyone",
+      "skills": "Cyberattacks, Network Security, Risk Management",
+      "price": 499,
+      "rating": 4.7,
+      "duration": 3,
+      "tag": "popular"
+    },
+    {
+      "id": 2,
+      "img": "/images/course/htmlcss.png",
+      "title": "HTML, CSS, Javascript",
+      "skills": "Frontend Web Development, HTML and CSS, Javacript",
+      "price": 399,
+      "rating": 4.3,
+      "duration": 2,
+      "tag": "basic"
+    },
+    {
+      "id": 3,
+      "img": "/images/course/python.png",
+      "title": "Python Basics",
+      "skills": "Python programming, Problem Solving",
+      "price": 299,
+      "rating": 4.5,
+      "duration": 1,
+      "tag": "basic"
+    },
+    {
+      "id": 4,
+      "img": "/images/course/react.jpg",
+      "title": "Intoduction to React",
+      "skills": "Python programming, Problem Solving",
+      "price": 499,
+      "rating": 4.8,
+      "duration": 3,
+      "tag": "popular"
+    },
+    {
+      "id": 5,
+      "img": "/images/course/typescript.png",
+      "title": "Understanding Typescipt",
+      "skills": "Utility types, Generics, Unions",
+      "price": 299,
+      "rating": 4.2,
+      "duration": 1,
+      "tag": "basic"
+    },
+    {
+      "id": 6,
+      "img": "/images/course/nextjs.jpg",
+      "title": "Next.JS for Beginners",
+      "skills": "Routing, rendering, optimization, streaming",
+      "price": 399,
+      "rating": 4.7,
+      "duration": 2,
+      "tag": "popular"
+    }
+  ]
+  

@@ -1,0 +1,491 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "CaviarDreams";
+  src: url("/font/CaviarDreams.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "CaviarDreams";
+  src: url("/font/Caviar_Dreams_Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+html {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-top: 60px;
+  font-family: "CaviarDreams";
+}
+
+main {
+  flex-grow: 1;
+}
+
+.navbar--container {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  background-color: white;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 1.2em;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 0 10px;
+  font-weight: bold;
+}
+
+.link--container {
+  width: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.inactive--link {
+  text-decoration: none;
+  color: black;
+}
+
+.active--link {
+  text-decoration: none;
+  color: #0056d2;
+}
+
+.home--landing {
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.home--intro--component {
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.intro--header {
+  width: 970px;
+  text-align: center;
+  font-size: 53px;
+  padding-bottom: 20px;
+}
+
+.intro--paragh {
+  text-align: center;
+  font-size: 18px;
+}
+
+.intro--button,
+.login--button,
+.registration--button,
+.enroll--button,
+.logout--button {
+  margin-top: 40px;
+  color: white;
+  background-color: black;
+  font-family: "CaviarDreams";
+  width: 150px;
+  height: 50px;
+  font-size: 17px;
+  border-radius: 30px;
+  cursor: pointer;
+  border: none;
+}
+
+.intro--button:hover,
+.login--button:hover,
+.registration--button:hover,
+.enroll--button:hover,
+.logout--button:hover {
+  background-color: #0056d2;
+}
+
+.logo--container {
+  margin: 70px 0;
+  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.about--container,
+.vision--container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.about--container h1 {
+  font-size: 38px;
+}
+
+.about--container p {
+  margin-top: 10px;
+  width: 80rem;
+  text-align: center;
+  font-size: 26px;
+}
+
+.vision--container {
+  margin-top: 50px;
+  margin-bottom: 40px;
+}
+
+.vision--container p {
+  font-size: 24px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.vision--quote {
+  display: flex;
+  gap: 10px;
+}
+
+.quote-icon {
+  font-size: 30px;
+  color: #0056d2;
+}
+
+.benefit--main--container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.benefit--container {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 400px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  padding: 30px;
+  gap: 10px;
+}
+
+.benefit--icon {
+  font-size: 50px;
+  color: #0056d2;
+}
+
+.popular--course,
+.profile--course {
+  margin-top: 40px;
+  padding: 30px;
+}
+
+.popular--course h2,
+.profile--course h1 {
+  padding: 15px;
+}
+
+.empty--course {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+
+.main--login--container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 630px;
+}
+
+.login--container,
+.register--container {
+  width: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  padding: 50px;
+  border-radius: 30px;
+  margin-top: 40px;
+}
+
+.login--icon,
+.registration--icon {
+  font-size: 60px;
+  color: #0056d2;
+  margin-bottom: 30px;
+}
+
+.login--container h1,
+.register--container h1 {
+  font-size: 38px;
+}
+
+.login--container p {
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.login--form,
+.registration--form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login--input--container,
+.registration--input--container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.input--label {
+  font-weight: bold;
+  font-size: 23px;
+  margin-left: 15px;
+}
+
+.login--input,
+.registration--input {
+  width: 450px;
+  height: 45px;
+  font-size: 20px;
+  border-radius: 25px;
+  border: 1px solid black;
+  padding: 15px;
+  font-family: "CaviarDreams";
+  font-weight: bold;
+}
+
+#register--tag {
+  padding: 10px;
+}
+
+.register--main--container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.registration--label {
+  font-weight: bold;
+  font-size: 20px;
+  margin-left: 15px;
+}
+
+.error--message {
+  color: red;
+  margin-left: 15px;
+}
+
+.course--search--container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 30px;
+}
+
+.course--search {
+  width: 600px;
+  height: 40px;
+  padding: 20px;
+  border-radius: 30px;
+  border: 1px solid black;
+  font-size: 17px;
+}
+
+.course--container,
+.home--course,
+.enrolled-courses {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.course--card--container {
+  border: 1px solid grey;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.course--card--container:hover {
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+}
+
+.course--header {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+}
+
+.course--header h3 {
+  font-size: 22px;
+}
+
+.course--header p {
+  margin-left: 5px;
+}
+
+.rating--icon {
+  color: #ffc000;
+}
+
+.course--price {
+  font-size: 22px;
+  padding: 5px;
+  margin-left: 10px;
+}
+
+.course--duration {
+  padding: 10px;
+  margin-left: 5px;
+}
+
+.course--details--container {
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+.course--details {
+  width: 800px;
+  padding: 20px;
+}
+
+.course--details h1 {
+  font-size: 60px;
+  color: #0056d2;
+}
+
+.course--details hr {
+  background-color: #333;
+  height: 5px;
+  margin-top: 10px;
+}
+
+.course--sub--details {
+  padding: 20px;
+}
+
+.course--sub--details p {
+  font-size: 25px;
+  padding: 5px;
+}
+
+.course--sub--details h2 {
+  font-size: 35px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.profile--title--container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  gap: 10px;
+}
+
+.profile--title--container h1 {
+  font-size: 40px;
+  color: #0056d2;
+}
+
+.profile--title--container p {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.logout--button {
+  margin-top: 0;
+  width: 110px;
+  height: 45px;
+}
+
+.footer--container {
+  width: 100%;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  font-size: 14px;
+  position: relative;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px 0;
+  margin-top: 40px;
+}
+
+.footer--details {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.icons--container {
+  padding: 20px;
+  width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.social--icon {
+  font-size: 35px;
+  color: white;
+}
+
+.social--icon:hover {
+  color: #0056d2;
+}
+
+.footer--line {
+  width: 70%;
+  border: 0;
+  border-top: 1px solid white;
+}

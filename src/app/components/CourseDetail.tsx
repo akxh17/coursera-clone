@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useGlobalContext } from "../context/GlobalContext";
 
 type Course = {
-  id: number;
+  cid: number;
   img: string;
   title: string;
   skills: string;
@@ -34,7 +34,7 @@ function CourseDetail({ id }: { id: string }) {
     fetchCourses();
   }, []);
 
-  const current = courses.find((course) => course.id.toString() === id);
+  const current = courses.find((course) => course.cid.toString() === id);
 
   if (!current) {
     return <h2>Course Not Found</h2>;

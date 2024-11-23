@@ -5,7 +5,7 @@ import { FaStar } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 
 type Course = {
-  id: number;
+  cid: number;
   img: string;
   title: string;
   skills: string;
@@ -18,7 +18,7 @@ type Course = {
 function CourseCard({ data }: { data: Course }) {
   const router = useRouter();
   function handleClick() {
-    router.push(`/courses/${data.id}`);
+    router.push(`/courses/${data.cid}`);
   }
   const { img, title, skills, price, rating, duration } = data;
   return (

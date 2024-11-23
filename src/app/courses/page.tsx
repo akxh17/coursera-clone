@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import CourseCard from "../components/CourseCard";
 
 type Course = {
-  id: number;
+  cid: number;
   img: string;
   title: string;
   skills: string;
@@ -52,7 +52,7 @@ function CoursesPage() {
       <div className="course--container">
         {filteredCourses.length > 0 ? (
           filteredCourses.map((course) => (
-            <CourseCard key={course.id} data={course} />
+            <CourseCard key={course.cid} data={course} />
           ))
         ) : (
           <h3>No Courses Found</h3>

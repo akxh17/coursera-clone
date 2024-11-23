@@ -5,15 +5,15 @@ import { useGlobalContext } from "../context/GlobalContext";
 import CourseCard from "./CourseCard";
 
 type Profile = {
-  id: string;
+  uid: number;
   fullName: string;
   email: string;
   password: string;
-  enrolled: string[];
+  enrolled: number[];
 };
 
 type Course = {
-  id: number;
+  cid: number;
   img: string;
   title: string;
   skills: string;
@@ -69,7 +69,7 @@ function ProfileDetail({ pid }: { pid: string }) {
     fetchCourses();
   }, []);
 
-  const current = profile.find((curr) => curr.id.toString() === pid);
+  const current = profile.find((curr) => curr.uid.toString() === pid);
 
   if (!current) {
     return <h2>Profile Not Found</h2>;
@@ -77,7 +77,7 @@ function ProfileDetail({ pid }: { pid: string }) {
   const { fullName, enrolled } = current;
 
   const enrolledCourses = courses.filter((course) =>
-    enrolled.includes(course.id.toString())
+    enrolled.includes(course.cid)
   );
 
   return (
@@ -98,7 +98,7 @@ function ProfileDetail({ pid }: { pid: string }) {
         ) : (
           <div className="enrolled-courses">
             {enrolledCourses.map((course) => (
-              <CourseCard key={course.id} data={course} />
+              <CourseCard key={course.cid} data={course} />
             ))}
           </div>
         )}

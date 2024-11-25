@@ -7,7 +7,7 @@ const client = createClient();
 export async function GET() {
   try {
     const users = await e
-      .select(e.User, (user) => ({
+      .select(e.User, () => ({
         uid: true,
         email: true,
         fullName: true,

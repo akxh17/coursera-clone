@@ -7,7 +7,7 @@ const client = createClient();
 export async function GET() {
   try {
     const courses = await e
-      .select(e.Course, (course) => ({
+      .select(e.Course, () => ({
         cid: true,
         img: true,
         title: true,

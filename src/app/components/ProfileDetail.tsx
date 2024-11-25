@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useGlobalContext } from "../context/GlobalContext";
 import CourseCard from "./CourseCard";
+import CourseLoading from "./CourseLoading";
+import ProfileLoading from "./ProfileLoading";
 
 type Profile = {
   uid: number;
@@ -26,8 +28,9 @@ type Course = {
 function ProfileDetail({ pid }: { pid: string }) {
   const [profile, setProfile] = useState<Profile[]>([]);
   const [courses, setCourses] = useState<Course[]>([]);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
-  const { setUserId, setIsLogged, userId, isLogged } = useGlobalContext();
+  const { setUserId, setIsLogged } = useGlobalContext();
 
   function handleLogout() {
     setUserId(null);
@@ -36,40 +39,45 @@ function ProfileDetail({ pid }: { pid: string }) {
   }
 
   useEffect(() => {
-    if (!userId) {
-      router.push("/not-found");
-    } else if (!isLogged) {
+    const storedUserId = localStorage.getItem("userId");
+    const storedIsLogged = localStorage.getItem("isLogged") === "true";
+
+    if (!storedUserId || !storedIsLogged) {
       router.push("/not-found");
     }
   }, []);
 
   useEffect(() => {
-    async function fetchProfile() {
+    async function fetchData() {
       try {
-        const response = await fetch("/api/profile_data");
-        const user = await response.json();
+        const [profileResponse, coursesResponse] = await Promise.all([
+          fetch("/api/profile_data"),
+          fetch("/api/course_data"),
+        ]);
+        const user = await profileResponse.json();
+        const course = await coursesResponse.json();
         setProfile(user.data);
+        setCourses(course.data);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching profile data:", error);
       }
     }
-    fetchProfile();
-  }, []);
-
-  useEffect(() => {
-    async function fetchCourses() {
-      try {
-        const response = await fetch("/api/course_data");
-        const course = await response.json();
-        setCourses(course.data);
-      } catch (error) {
-        console.error("Error fetching course data:", error);
-      }
-    }
-    fetchCourses();
+    fetchData();
   }, []);
 
   const current = profile.find((curr) => curr.uid.toString() === pid);
+
+  if (loading) {
+    return (
+      <div>
+        <ProfileLoading />
+        <div className="profile--course--loading">
+          <CourseLoading />
+        </div>
+      </div>
+    );
+  }
 
   if (!current) {
     return <h2>Profile Not Found</h2>;

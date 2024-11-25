@@ -4,6 +4,7 @@ import Image from "next/image";
 import { FaStar } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { useGlobalContext } from "../context/GlobalContext";
+import CourseDetailLoading from "../components/CourseDetailLoading";
 
 type Course = {
   cid: number;
@@ -18,7 +19,9 @@ type Course = {
 
 function CourseDetail({ id }: { id: string }) {
   const [courses, setCourses] = useState<Course[]>([]);
+  const [loading, setLoading] = useState(true);
   const { isLogged, userId } = useGlobalContext();
+
   const router = useRouter();
 
   useEffect(() => {
@@ -27,6 +30,7 @@ function CourseDetail({ id }: { id: string }) {
         const response = await fetch("/api/course_data");
         const course = await response.json();
         setCourses(course.data);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching course data:", error);
       }
@@ -35,6 +39,14 @@ function CourseDetail({ id }: { id: string }) {
   }, []);
 
   const current = courses.find((course) => course.cid.toString() === id);
+
+  if (loading) {
+    return (
+      <div>
+        <CourseDetailLoading />
+      </div>
+    );
+  }
 
   if (!current) {
     return <h2>Course Not Found</h2>;

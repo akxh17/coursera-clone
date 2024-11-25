@@ -88,4 +88,6 @@ async function insertCourses() {
   }
 }
 
-insertCourses().catch((error) => console.error("Unexpected error:", error.message));
+insertCourses().catch((error) =>
+  console.error("Unexpected error:", error.message)
+);

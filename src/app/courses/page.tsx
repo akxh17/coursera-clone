@@ -1,7 +1,7 @@
 "use client";
-
 import React, { useState, useEffect } from "react";
 import CourseCard from "../components/CourseCard";
+import CourseLoading from "../components/CourseLoading";
 
 type Course = {
   cid: number;
@@ -17,6 +17,7 @@ type Course = {
 function CoursesPage() {
   const [courses, setCourses] = useState<Course[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchCourses() {
@@ -24,6 +25,7 @@ function CoursesPage() {
         const response = await fetch("/api/course_data");
         const course = await response.json();
         setCourses(course.data);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching course data:", error);
       }
@@ -49,15 +51,26 @@ function CoursesPage() {
           onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
-      <div className="course--container">
-        {filteredCourses.length > 0 ? (
-          filteredCourses.map((course) => (
-            <CourseCard key={course.cid} data={course} />
-          ))
-        ) : (
-          <h3>No Courses Found</h3>
-        )}
-      </div>
+      {loading ? (
+        <div className="loading--container">
+          <p className="loading--text">Loading....</p>
+          <div className="loading--card">
+            <CourseLoading />
+            <CourseLoading />
+            <CourseLoading />
+          </div>
+        </div>
+      ) : (
+        <div className="course--container">
+          {filteredCourses.length > 0 ? (
+            filteredCourses.map((course) => (
+              <CourseCard key={course.cid} data={course} />
+            ))
+          ) : (
+            <h3>No Courses Found</h3>
+          )}
+        </div>
+      )}
     </div>
   );
 }

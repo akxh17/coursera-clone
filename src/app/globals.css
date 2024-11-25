@@ -497,3 +497,201 @@ main {
   border: 0;
   border-top: 1px solid white;
 }
+
+.loading--container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+}
+
+.loading--text {
+  font-size: 30px;
+}
+
+.loading--card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+.skeloton--container {
+  border: 4px solid #d3d3d3;
+  border-radius: 20px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+}
+.skeloton--image {
+  width: 500px;
+  height: 300px;
+  background-color: #d3d3d3;
+  border-radius: 20px;
+}
+
+.skeloton--title {
+  width: 300px;
+  height: 30px;
+  background-color: #d3d3d3;
+  border-radius: 40px;
+}
+
+.skeloton--skills {
+  width: 100%;
+  height: 15px;
+  background-color: #d3d3d3;
+  border-radius: 40px;
+}
+
+.skeloton--rating,
+.skeloton--duration {
+  width: 50px;
+  height: 15px;
+  background-color: #d3d3d3;
+  border-radius: 60px;
+}
+
+.skeloton--price {
+  width: 100px;
+  height: 35px;
+  background-color: #d3d3d3;
+  border-radius: 60px;
+  border: 20px 0;
+}
+
+.course--detail--skeloton {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+.course--detail--skeloton--image {
+  width: 1000px;
+  height: 600px;
+  background-color: #d3d3d3;
+  border-radius: 40px;
+}
+
+.course--detail--skeloton--detail {
+  width: 800px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 30px;
+}
+.course--detail--skeloton--title {
+  width: 600px;
+  height: 80px;
+  background-color: #d3d3d3;
+  border-radius: 20px;
+}
+
+.course--detail--skeloton--skills {
+  width: 100%;
+  height: 15px;
+  background-color: #d3d3d3;
+  border-radius: 20px;
+  border-top: 50px;
+}
+
+.course--detail--skeloton--duration {
+  width: 200px;
+  height: 15px;
+  background-color: #d3d3d3;
+  border-radius: 20px;
+}
+
+.course--detail--skeloton--rating {
+  width: 100px;
+  height: 15px;
+  background-color: #d3d3d3;
+  border-radius: 20px;
+}
+
+.course--detail--skeloton--price {
+  width: 150px;
+  height: 60px;
+  background-color: #d3d3d3;
+  border-radius: 20px;
+  border: 20px;
+  border-top: 50px;
+}
+
+.course--detail--skeloton--button {
+  width: 150px;
+  height: 40px;
+  background-color: #d3d3d3;
+  border-radius: 20px;
+  border-top: 50px;
+}
+
+.profile--course--loading {
+  width: 550px;
+}
+
+.profile--loading {
+  width: 400px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 30px;
+}
+
+.profile--skeloton {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+.profile--skeloton--image {
+  width: 100px;
+  height: 100px;
+  background-color: #d3d3d3;
+  border-radius: 50px;
+}
+
+.profile--skeloton--detials {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.profile--details--name {
+  width: 200px;
+  height: 40px;
+  background-color: #d3d3d3;
+  border-radius: 20px;
+}
+
+.profile--details--age {
+  width: 200px;
+  height: 20px;
+  background-color: #d3d3d3;
+  border-radius: 20px;
+}
+
+.profile--other--details {
+  width: 400px;
+  height: 10px;
+  background-color: #d3d3d3;
+  border-radius: 20px;
+}

@@ -25,7 +25,15 @@ export async function PATCH(
 
     const currentUser = user[0];
 
-    if (currentUser.enrolled.includes(courseId)) {
+    // if (currentUser.enrolled.includes(courseId)) {
+    //   return NextResponse.json(
+    //     { message: "Course already enrolled" },
+    //     { status: 400 }
+    //   );
+    // }
+
+    const isAlreadyEnrolled = currentUser.enrolled.includes(Number(courseId));
+    if (isAlreadyEnrolled) {
       return NextResponse.json(
         { message: "Course already enrolled" },
         { status: 400 }

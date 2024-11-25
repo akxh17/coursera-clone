@@ -1,19 +1,9 @@
 import { NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
-import { nanoid } from "nanoid";
+import { createClient } from "edgedb";
+import e from "../../../../dbschema/edgeql-js";
+import bcrypt from "bcrypt";
 
-const userFilePath = path.join(process.cwd(), "src/app/db/user.json");
-
-type User = {
-  id: string;
-  fullName: string;
-  email: string;
-  password: string;
-  enrolled: string[];
-};
-
-let users: User[] = [];
+const client = createClient();
 
 export async function POST(request: Request) {
   const { action, fullName, email, password } = await request.json();
@@ -26,29 +16,31 @@ export async function POST(request: Request) {
       );
     }
 
-    if (fs.existsSync(userFilePath)) {
-      const userData = fs.readFileSync(userFilePath, "utf-8");
-      users = userData ? JSON.parse(userData) : [];
-    }
+    const existingUser = await e
+      .select(e.User, (user) => ({
+        filter: e.op(user.email, "=", email),
+        uid: true,
+      }))
+      .assert_single()
+      .run(client);
 
-    const userExists = users.some((user) => user.email === email);
-    if (userExists) {
+    if (existingUser) {
       return NextResponse.json(
         { message: "Email already in use" },
         { status: 400 }
       );
     }
-    const newUser: User = {
-      id: nanoid(),
-      fullName,
-      email,
-      password,
-      enrolled: [],
-    };
 
-    users.push(newUser);
-    fs.writeFileSync(userFilePath, JSON.stringify(users, null, 2));
-    console.log(users);
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    await e
+      .insert(e.User, {
+        fullName,
+        email,
+        password: hashedPassword,
+        enrolled: [],
+      })
+      .run(client);
 
     return NextResponse.json(
       { message: "User registered successfully" },
@@ -61,31 +53,38 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
+    const user = await e
+      .select(e.User, (user) => ({
+        filter: e.op(user.email, "=", email),
+        uid: true,
+        fullName: true,
+        email: true,
+        password: true,
+        enrolled: true,
+      }))
+      .assert_single()
+      .run(client);
 
-    if (fs.existsSync(userFilePath)) {
-      const userData = fs.readFileSync(userFilePath, "utf-8");
-      users = userData ? JSON.parse(userData) : [];
-    } else {
-      return NextResponse.json(
-        { message: "No users found. Please register first." },
-        { status: 404 }
-      );
-    }
-
-    const user = users.find(
-      (user) => user.email === email && user.password === password
-    );
     if (!user) {
       return NextResponse.json(
         { message: "Invalid email or password" },
         { status: 401 }
       );
     }
+
+    const passwordMatches = await bcrypt.compare(password, user.password);
+    if (!passwordMatches) {
+      return NextResponse.json(
+        { message: "Invalid email or password" },
+        { status: 401 }
+      );
+    }
+
     return NextResponse.json(
       {
         message: "Login successful",
         user: {
-          id: user.id,
+          id: user.uid,
           fullName: user.fullName,
           email: user.email,
           enrolled: user.enrolled,
@@ -93,5 +92,7 @@ export async function POST(request: Request) {
       },
       { status: 200 }
     );
+  } else {
+    return NextResponse.json({ message: "Invalid action" }, { status: 400 });
   }
 }

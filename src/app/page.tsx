@@ -7,7 +7,7 @@ import Benefits from "./components/Benefits";
 import CourseCard from "./components/CourseCard";
 
 type Course = {
-  id: number;
+  cid: number;
   img: string;
   title: string;
   skills: string;
@@ -57,7 +57,7 @@ export default function Home() {
           {courses
             .filter((course) => course.tag === "popular")
             .map((course) => (
-              <CourseCard key={course.id} data={course} />
+              <CourseCard key={course.cid} data={course} />
             ))}
         </div>
       </div>

@@ -1,53 +1,69 @@
 import { NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
+import { createClient } from "edgedb";
+import e from "../../../../../dbschema/edgeql-js";
 
-const userFilePath = path.join(process.cwd(), "src/app/db/user.json");
-
-type User = {
-  id: string;
-  fullName: string;
-  email: string;
-  password: string;
-  enrolled: string[];
-};
-
-let users: User[] = [];
+const client = createClient();
 
 export async function PATCH(
   request: Request,
   { params }: { params: Promise<{ userId: string }> }
 ) {
-  const  userId  = (await params).userId
+  const userId = (await params).userId;
   const { courseId } = await request.json();
 
-  if (fs.existsSync(userFilePath)) {
-    const userData = fs.readFileSync(userFilePath, "utf-8");
-    users = userData ? JSON.parse(userData) : [];
-  }
+  try {
+    const user = await e
+      .select(e.User, (user) => ({
+        uid: true,
+        enrolled: true,
+        filter: e.op(user.uid, "=", Number(userId)),
+      }))
+      .run(client);
+    if (!user || user.length === 0) {
+      return NextResponse.json({ message: "User not found" }, { status: 404 });
+    }
 
-  const userIndex = users.findIndex((user) => user.id === userId);
-  if (userIndex === -1) {
-    return NextResponse.json({ message: "User not found" }, { status: 404 });
-  }
+    const currentUser = user[0];
 
-  const user = users[userIndex];
-  if (user.enrolled.includes(courseId)) {
+    // if (currentUser.enrolled.includes(courseId)) {
+    //   return NextResponse.json(
+    //     { message: "Course already enrolled" },
+    //     { status: 400 }
+    //   );
+    // }
+
+    const isAlreadyEnrolled = currentUser.enrolled.includes(Number(courseId));
+    if (isAlreadyEnrolled) {
+      return NextResponse.json(
+        { message: "Course already enrolled" },
+        { status: 400 }
+      );
+    }
+
+    await e
+      .update(e.User, (user) => ({
+        filter: e.op(user.uid, "=", Number(userId)),
+        set: {
+          enrolled: e.op(
+            user.enrolled,
+            "++",
+            e.literal(e.array(e.int32), [courseId])
+          ),
+        },
+      }))
+      .run(client);
+
     return NextResponse.json(
-      { message: "Course already enrolled" },
-      { status: 400 }
+      {
+        message: "Course enrolled successfully",
+      },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Error enrolling course:", error);
+    return NextResponse.json(
+      { message: "Failed to enroll in course" },
+      { status: 500 }
     );
   }
-
-  users[userIndex].enrolled.push(courseId);
-
-  fs.writeFileSync(userFilePath, JSON.stringify(users, null, 2));
-
-  return NextResponse.json(
-    {
-      message: "Course enrolled successfully",
-      enrolled: users[userIndex].enrolled,
-    },
-    { status: 200 }
-  );
 }

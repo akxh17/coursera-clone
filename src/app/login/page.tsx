@@ -14,7 +14,7 @@ function LoginPage() {
   useEffect(() => {
     if (isLogged) {
       router.push("/");
-    } 
+    }
   }, []);
 
   async function handleSubmit(event: FormEvent) {

@@ -25,9 +25,9 @@ async function CoursePage(props: {
   const protocol = host?.includes("localhost") ? "http" : "https";
   const baseUrl = `${protocol}://${host}`;
 
-  let response = await fetch(`${baseUrl}/api/course_data`);
-  let course = await response.json();
-  let courses = course.data;
+  const response = await fetch(`${baseUrl}/api/course_data`);
+  const course = await response.json();
+  const courses = course.data;
 
   const filteredCourses = courses.filter(
     (course: Course) =>

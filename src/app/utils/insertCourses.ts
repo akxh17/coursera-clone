@@ -84,7 +84,7 @@ async function insertCourses() {
     }
     console.log("Courses inserted successfully.");
   } catch (error) {
-    console.log("Error inserting course",error);
+    console.log("Error inserting course", error);
   }
 }
 
